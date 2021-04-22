@@ -1,6 +1,5 @@
 import streamlit as st
 import pickle
-import joblib
 import pandas as pd
 from PIL import Image
 
@@ -29,7 +28,7 @@ scaler = pickle.load( open("scaler.p", "rb" ))
 model_ann_0 = load_model('./modelann.h5')
 
 #data_train_example = pickle.load( open( "data_train_example.p", "rb" )) 
-data_train_example = joblib.load( open( "./data_train_example.p", "rb" ))# 
+data_train_example = pickle.load( open( "./data_train_example.p", "rb" ))# 
 
 
 
