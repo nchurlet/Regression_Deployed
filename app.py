@@ -16,8 +16,8 @@ import tensorflow as tf
 
 # Sidebar - this sidebar allows the user to set the parameters that will be used by the model to create the prediction.
 st.sidebar.header('Renseignez les caractéristiques des biens du quartier pour obtenir une évaluation des prix des biens')
-
-def load_objects()
+@st.cache
+def load_objects():
 	modelDecisionTreeRegressor_0 = pickle.load( open( "modelDecisionTreeRegressor_0.p", "rb" ))
 	modelGradientBoostingRegressor_0 = pickle.load( open( "modelGradientBoostingRegressor_0.p", "rb" ))
 	modelLinearRegression_0 = pickle.load( open( "modelLinearRegression0.p", "rb" ))
@@ -31,7 +31,7 @@ def load_objects()
 	#data_train_example = pickle.load( open( "data_train_example.p", "rb" )) 
 	data_train_example = pickle.load( open( "./data_train_example.p", "rb" ))# 
 
-
+load_objects()
 
 MedInc = st.sidebar.slider(
 	"Revenus moyens des habitants du quartier", 
