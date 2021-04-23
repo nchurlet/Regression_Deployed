@@ -16,20 +16,51 @@ import tensorflow as tf
 
 # Sidebar - this sidebar allows the user to set the parameters that will be used by the model to create the prediction.
 st.sidebar.header('Renseignez les caractéristiques des biens du quartier pour obtenir une évaluation des prix des biens')
-@st.cache
-def load_objects():
-	modelDecisionTreeRegressor_0 = pickle.load( open( "modelDecisionTreeRegressor_0.p", "rb" ))
-	modelGradientBoostingRegressor_0 = pickle.load( open( "modelGradientBoostingRegressor_0.p", "rb" ))
-	modelLinearRegression_0 = pickle.load( open( "modelLinearRegression0.p", "rb" ))
-	#modelRandomForestRegressor_0 = pickle.load( open( "modelRandomForestRegressor0.p", "rb" ))
-	scaler = pickle.load( open("scaler.p", "rb" ))
-	#model_ann_0 = pickle.load( open("model_ann_0.p", "rb" ))
 
-	# load the model
+# @st.cache
+def load_decision_tree():
+	global modelDecisionTreeRegressor_0
+	modelDecisionTreeRegressor_0 = pickle.load( open( "modelDecisionTreeRegressor_0.p", "rb" ))
+# @st.cache
+def load_gradient_boost():
+	global modelGradientBoostingRegressor_0
+	modelGradientBoostingRegressor_0 = pickle.load( open( "modelGradientBoostingRegressor_0.p", "rb" ))
+
+# @st.cache
+def load_linear_regressor():
+	global modelLinearRegression_0
+	modelLinearRegression_0 = pickle.load( open( "modelLinearRegression0.p", "rb" ))
+
+# @st.cache
+def load_scaler():
+	global scaler 
+	scaler = pickle.load( open("scaler.p", "rb" ))
+
+# @st.cache
+def load_neurone_network():
+	global model_ann_0
 	model_ann_0 = tf.keras.models.load_model('./modelann.h5')
 
-	#data_train_example = pickle.load( open( "data_train_example.p", "rb" )) 
-	data_train_example = pickle.load( open( "./data_train_example.p", "rb" ))# 
+# @st.cache
+def  load_data():
+	global data_train_example
+	data_train_example = pickle.load( open( "./data_train_example.p", "rb" ))
+
+# @st.cache
+def load_random_forest():
+	global modelRandomForestRegressor_0
+	modelRandomForestRegressor_0 = pickle.load( open( "modelRandomForestRegressor0.p", "rb" ))
+
+# @st.cache
+def load_objects():
+
+	load_decision_tree()
+	load_gradient_boost()
+	load_linear_regressor()
+	load_scaler()
+	load_neurone_network()
+	# load_random_forest()
+	load_data()
 
 load_objects()
 
