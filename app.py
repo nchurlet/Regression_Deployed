@@ -8,7 +8,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn import linear_model
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.preprocessing import MinMaxScaler
+import sklearn.preprocessing
 from tensorflow.keras.models import Sequential
 #from keras.models import load_model
 import tensorflow as tf
@@ -17,19 +17,19 @@ import tensorflow as tf
 # Sidebar - this sidebar allows the user to set the parameters that will be used by the model to create the prediction.
 st.sidebar.header('Renseignez les caractéristiques des biens du quartier pour obtenir une évaluation des prix des biens')
 
+def load_objects()
+	modelDecisionTreeRegressor_0 = pickle.load( open( "modelDecisionTreeRegressor_0.p", "rb" ))
+	modelGradientBoostingRegressor_0 = pickle.load( open( "modelGradientBoostingRegressor_0.p", "rb" ))
+	modelLinearRegression_0 = pickle.load( open( "modelLinearRegression0.p", "rb" ))
+	#modelRandomForestRegressor_0 = pickle.load( open( "modelRandomForestRegressor0.p", "rb" ))
+	scaler = pickle.load( open("scaler.p", "rb" ))
+	#model_ann_0 = pickle.load( open("model_ann_0.p", "rb" ))
 
-modelDecisionTreeRegressor_0 = pickle.load( open( "modelDecisionTreeRegressor_0.p", "rb" ))
-modelGradientBoostingRegressor_0 = pickle.load( open( "modelGradientBoostingRegressor_0.p", "rb" ))
-modelLinearRegression_0 = pickle.load( open( "modelLinearRegression0.p", "rb" ))
-#modelRandomForestRegressor_0 = pickle.load( open( "modelRandomForestRegressor0.p", "rb" ))
-scaler = pickle.load( open("scaler.p", "rb" ))
-#model_ann_0 = pickle.load( open("model_ann_0.p", "rb" ))
+	# load the model
+	model_ann_0 = tf.keras.models.load_model('./modelann.h5')
 
-# load the model
-model_ann_0 = tf.keras.models.load_model('./modelann.h5')
-
-#data_train_example = pickle.load( open( "data_train_example.p", "rb" )) 
-data_train_example = pickle.load( open( "./data_train_example.p", "rb" ))# 
+	#data_train_example = pickle.load( open( "data_train_example.p", "rb" )) 
+	data_train_example = pickle.load( open( "./data_train_example.p", "rb" ))# 
 
 
 
@@ -73,13 +73,6 @@ Longitude = st.sidebar.slider(
 	min_value=float(data_train_example.min()[7]),
 	max_value=float(data_train_example.max()[7])
 	)
-### Test d'une méthode pour résoudre un problème en deploiement
-def populate_dict_with_module_objects(target_dict, modules, obj_filter):
-  for module in modules:
-    for name in dir(module):
-      obj = getattr(module, name)
-      if obj_filter(obj):
-        target_dict[name] = obj
 
 def get_data():
 	data = {'Longitude': Longitude,
