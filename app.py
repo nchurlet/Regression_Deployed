@@ -12,7 +12,25 @@ import sklearn.preprocessing
 from tensorflow.keras.models import Sequential
 #from keras.models import load_model
 import tensorflow as tf
+# Display image
+from pathlib import Path
+import base64
+# from base64 import b64encode
 
+
+# https://pmbaumgartner.github.io/streamlitopedia/sizing-and-images.html
+# fonction pour afficher des images	
+def img_to_bytes(img_path):
+    img_bytes = Path(img_path).read_bytes()
+    encoded = base64.b64encode(img_bytes).decode()
+    return encoded
+
+header_html = "<img src='data:image/png;base64,{}' class='img-fluid' style='width: 100%; height: auto;'>".format(
+    img_to_bytes("./images/california_house_2.JPG")
+)
+st.sidebar.markdown(
+    header_html, unsafe_allow_html=True,
+)
 
 # Sidebar - this sidebar allows the user to set the parameters that will be used by the model to create the prediction.
 st.sidebar.header('Renseignez les caractéristiques des biens du quartier pour obtenir une évaluation des prix des biens')
