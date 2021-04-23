@@ -10,7 +10,8 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
-from keras.models import load_model
+#from keras.models import load_model
+import tensorflow as tf
 
 
 # Sidebar - this sidebar allows the user to set the parameters that will be used by the model to create the prediction.
@@ -25,7 +26,7 @@ scaler = pickle.load( open("scaler.p", "rb" ))
 #model_ann_0 = pickle.load( open("model_ann_0.p", "rb" ))
 
 # load the model
-model_ann_0 = load_model('./modelann.h5')
+model_ann_0 = tf.keras.models.load_model('./modelann.h5')
 
 #data_train_example = pickle.load( open( "data_train_example.p", "rb" )) 
 data_train_example = pickle.load( open( "./data_train_example.p", "rb" ))# 
@@ -79,6 +80,7 @@ def populate_dict_with_module_objects(target_dict, modules, obj_filter):
       obj = getattr(module, name)
       if obj_filter(obj):
         target_dict[name] = obj
+
 def get_data():
 	data = {'Longitude': Longitude,
 	'Latitude': Latitude,
