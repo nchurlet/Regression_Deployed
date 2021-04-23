@@ -72,10 +72,13 @@ Longitude = st.sidebar.slider(
 	min_value=float(data_train_example.min()[7]),
 	max_value=float(data_train_example.max()[7])
 	)
-# mettre une image
-#![Some California Houses]("C:/Users/Utilisateur/Documents/_Simplon/A_Rendre/Regression"?auto=compress&cs=tinysrgb&h=750&w=1260)
-# image = Image.open('./images/ccalifornia_house_2.PNG')
-# st.image(image, use_column_width=True)
+### Test d'une méthode pour résoudre un problème en deploiement
+def populate_dict_with_module_objects(target_dict, modules, obj_filter):
+  for module in modules:
+    for name in dir(module):
+      obj = getattr(module, name)
+      if obj_filter(obj):
+        target_dict[name] = obj
 def get_data():
 	data = {'Longitude': Longitude,
 	'Latitude': Latitude,
