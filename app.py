@@ -24,17 +24,7 @@ def img_to_bytes(img_path):
     img_bytes = Path(img_path).read_bytes()
     encoded = base64.b64encode(img_bytes).decode()
     return encoded
-
-header_html = "<img src='data:image/png;base64,{}' class='img-fluid' style='width: 100%; height: auto;'>".format(
-    img_to_bytes("./images/california_house_2.JPG")
-)
-st.sidebar.markdown(
-    header_html, unsafe_allow_html=True,
-)
-
-# Sidebar - this sidebar allows the user to set the parameters that will be used by the model to create the prediction.
-st.sidebar.header('Renseignez les caractéristiques des biens du quartier pour obtenir une évaluation des prix des biens')
-
+########### LOAD OBJECTS ###########
 # @st.cache
 def load_decision_tree():
 	global modelDecisionTreeRegressor_0
@@ -81,7 +71,19 @@ def load_objects():
 	load_data()
 
 load_objects()
+########## SIDEBAR ##########
+########### IMAGE ###########
+header_html = "<img src='data:image/png;base64,{}' class='img-fluid' style='width: 100%; height: auto;'>".format(
+    img_to_bytes("./images/california_house_2.JPG")
+)
+st.sidebar.markdown(
+    header_html, unsafe_allow_html=True,
+)
+########### SIDEBAR TITLE ###########
+# Sidebar - this sidebar allows the user to set the parameters that will be used by the model to create the prediction.
+st.sidebar.header('Renseignez les caractéristiques des biens du quartier pour obtenir une évaluation des prix des biens')
 
+########### SLIDERS ###########
 MedInc = st.sidebar.slider(
 	"Revenus moyens des habitants du quartier", 
 	min_value=float(data_train_example.min()[0]), 
