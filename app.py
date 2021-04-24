@@ -8,7 +8,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn import linear_model
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import GradientBoostingRegressor
-import sklearn.preprocessing
+import sklearn
 from tensorflow.keras.models import Sequential
 #from keras.models import load_model
 import tensorflow as tf
@@ -24,6 +24,19 @@ def img_to_bytes(img_path):
     img_bytes = Path(img_path).read_bytes()
     encoded = base64.b64encode(img_bytes).decode()
     return encoded
+
+# Fonction récupérant les données saisies.
+def get_data():
+	data = {'Longitude': Longitude,
+	'Latitude': Latitude,
+	'Housing Median Age': HouseAge,
+	'Total Rooms': AveRooms,
+	'Total Bedrooms': AveBedrms,
+	'Population': Population,
+	'Households': AveOccup,
+	'Median Income': MedInc
+	}
+	return data
 ########### LOAD OBJECTS ###########
 # @st.cache
 def load_decision_tree():
@@ -125,23 +138,13 @@ Longitude = st.sidebar.slider(
 	max_value=float(data_train_example.max()[7])
 	)
 
-def get_data():
-	data = {'Longitude': Longitude,
-	'Latitude': Latitude,
-	'Housing Median Age': HouseAge,
-	'Total Rooms': AveRooms,
-	'Total Bedrooms': AveBedrms,
-	'Population': Population,
-	'Households': AveOccup,
-	'Median Income': MedInc
-	}
-	return data
-
+############ BODY ###########
+############ MAP ############
 st.map(pd.DataFrame(data_train_example[['Latitude', 'Longitude']].values, columns=['lat', 'lon']))
 
 if st.button("Predict"):
 	df = pd.DataFrame(get_data(), index = [0])
-	st.table(df)
+	st.table(df) # Dataframe recueillant les informations saisies
 	st.text(f"""
 		Prédictions en milliers de dollars US qui devrait se situer entre 0.14999 et 5.00001
 		La moyenne étant 2.068558169
