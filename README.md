@@ -11,7 +11,7 @@ Plusieurs modèles ont été exporté sur un notebook :
 Le déploiement implique des précautions supplémentaires à prendre par rapport avec un travail local et un déploiement local.  
 Les principales précautions à prendre sont liées au fichier requirements.txt.  
 En effet, il faut faire attention à la version de l'environnement scikit_learn notamment à cause de l'export des objets python.  
-1 - Par exemple, le `scaler` exporté en version `scikit_learn==0.23.1` lèvera une erreur si la version de l'environnement est en `0.24.1` car il ne possèdera pas l'attribut `clip`.  
+1 - Par exemple, le `scaler` exporté en version `scikit_learn==0.23.1` lèvera une erreur si la version de l'environnement est en `0.24.1` car il ne possèdera pas l'attribut `clip`.  On peut connaître la version d'un module avec la commande `python -m pip show scikit-learn` (exemple pour scikit-learn) dans anaconda prompt.
 2 - D'autre part, certains objets qui fonctionnent avec un import strict en local ont besoin d'un import global en deploiement.  
 Par exemple pour le réseau de neurone et la fonction `load_model`. 
 ```py
