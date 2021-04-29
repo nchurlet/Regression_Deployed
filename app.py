@@ -95,7 +95,6 @@ st.sidebar.markdown(
 ########### SIDEBAR TITLE ###########
 # Sidebar - this sidebar allows the user to set the parameters that will be used by the model to create the prediction.
 st.sidebar.header('Renseignez les caractéristiques des biens du quartier pour obtenir une évaluation des prix des biens')
-st.header("Estimation du prix du m² d'un bien en Californie en 1990")
 
 ########### SLIDERS ###########
 MedInc = st.sidebar.slider(
@@ -140,6 +139,8 @@ Longitude = st.sidebar.slider(
 	)
 
 ############ BODY ###########
+########### TITLE ###########
+st.header("Estimation du prix du m² d'un bien en Californie en 1990")
 ############ MAP ############
 st.map(pd.DataFrame(data_train_example[['Latitude', 'Longitude']].values, columns=['lat', 'lon']))
 
