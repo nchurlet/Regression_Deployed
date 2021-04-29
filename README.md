@@ -1,5 +1,6 @@
 Regression_Deployed
-![image](https://user-images.githubusercontent.com/7347376/115956415-d4923e80-a4fc-11eb-9bb9-96fc76afab30.png)
+![image](https://user-images.githubusercontent.com/7347376/116549198-7cd94600-a8f5-11eb-8614-69d353fcd69a.png)
+
 Utilisation de plusieurs modèles pour prédire le prix moyen d'un logement d'un quartier de Californie en fonction de plusieurs critères de ce quartier.
 Plusieurs modèles ont été exporté sur un notebook : 
 - Régression linéaire
