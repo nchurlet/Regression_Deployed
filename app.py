@@ -95,6 +95,7 @@ st.sidebar.markdown(
 ########### SIDEBAR TITLE ###########
 # Sidebar - this sidebar allows the user to set the parameters that will be used by the model to create the prediction.
 st.sidebar.header('Renseignez les caractéristiques des biens du quartier pour obtenir une évaluation des prix des biens')
+st.header("Estimation du prix du m² d'un bien en Californie en 1990")
 
 ########### SLIDERS ###########
 MedInc = st.sidebar.slider(
@@ -146,12 +147,12 @@ if st.button("Predict"):
 	df = pd.DataFrame(get_data(), index = [0])
 	st.table(df) # Dataframe recueillant les informations saisies
 	st.text(f"""
-		Prédictions en milliers de dollars US qui devrait se situer entre 0.14999 et 5.00001
-		La moyenne étant 2.068558169
-		Régression linéaire : {modelLinearRegression_0.predict(df)[0][0]}
-		Arbre de décision : {modelDecisionTreeRegressor_0.predict(df)[0]}
-		Gradient Boost : {modelGradientBoostingRegressor_0.predict(df)[0]}
-		Réseau de neurones : {model_ann_0.predict(scaler.transform(df))[0][0]}
+		Prédictions en milliers de dollars US qui devrait se situer entre 149 $/m² et 5000 $/m²
+		Pour vous situer la moyenne sur la Californie étant 2068 $/m²
+		Régression linéaire : {modelLinearRegression_0.predict(df)[0][0]*1000 :.2f} $/m²
+		Arbre de décision : {modelDecisionTreeRegressor_0.predict(df)[0]*1000 :.2f} $/m²
+		Gradient Boost : {modelGradientBoostingRegressor_0.predict(df)[0]*1000 :.2f} $/m²
+		Réseau de neurones : {model_ann_0.predict(scaler.transform(df))[0][0]*1000 :.2f} $/m²
 		"""
 	)
 
